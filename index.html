@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eureka Atom Speciality 65E - Negru | De Vânzare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --coffee-dark: #2c1810;
+        --coffee-medium: #5c3d2e;
+        --coffee-light: #8b7355;
+        --cream: #f5e6d3;
+        --cream-dark: #e8d4ba;
+        --espresso: #1a0f0a;
+        --accent-gold: #c9a961;
+        --white: #ffffff;
+        --gray-light: #f8f6f3;
+        --gray-medium: #e0ddd8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Work Sans", sans-serif;
+        background: var(--cream);
+        color: var(--coffee-dark);
+        line-height: 1.7;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(
+            circle at 20% 50%,
+            rgba(201, 169, 97, 0.03) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(92, 61, 46, 0.03) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 12px;
+        position: relative;
+        z-index: 1;
+      }
+
+      header {
+        background: linear-gradient(
+          135deg,
+          var(--coffee-dark) 0%,
+          var(--espresso) 100%
+        );
+        padding: 25px 40px;
+        border-radius: 2px;
+        box-shadow:
+          0 20px 60px rgba(26, 15, 10, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        margin-bottom: 15px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          rgba(201, 169, 97, 0.03) 2px,
+          rgba(201, 169, 97, 0.03) 4px
+        );
+        pointer-events: none;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        color: var(--cream);
+        font-size: 2.2em;
+        margin-bottom: 6px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        position: relative;
+      }
+
+      .subtitle {
+        color: var(--accent-gold);
+        font-size: 0.95em;
+        font-weight: 300;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        position: relative;
+      }
+
+      .profile-medallion {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--accent-gold);
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(201, 169, 97, 0.2);
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+      }
+
+      .profile-medallion:hover {
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      .profile-medallion img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .main-content {
+        background: var(--white);
+        padding: 30px;
+        border-radius: 2px;
+        box-shadow:
+          0 1px 3px rgba(44, 24, 16, 0.06),
+          0 20px 60px rgba(44, 24, 16, 0.08);
+        margin-bottom: 15px;
+      }
+
+      .hero-section {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid var(--gray-medium);
+      }
+
+      /* Carousel Styles */
+      .carousel-container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 20px;
+        overflow: hidden;
+        border-radius: 2px;
+        box-shadow:
+          0 10px 40px rgba(44, 24, 16, 0.15),
+          inset 0 0 0 1px rgba(44, 24, 16, 0.05);
+      }
+
+      .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        max-height: 500px;
+        background: var(--gray-light);
+      }
+
+      .carousel-slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+
+      .carousel-slide.active {
+        opacity: 1;
+      }
+
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(44, 24, 16, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(201, 169, 97, 0.3);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 10;
+        color: var(--cream);
+        font-weight: 300;
+      }
+
+      .carousel-button:hover {
+        background: var(--coffee-dark);
+        border-color: var(--accent-gold);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .carousel-button.prev {
+        left: 20px;
+      }
+
+      .carousel-button.next {
+        right: 20px;
+      }
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 10;
+      }
+
+      .carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(245, 230, 211, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(201, 169, 97, 0.3);
+      }
+
+      .carousel-dot.active {
+        background: var(--accent-gold);
+        transform: scale(1.3);
+        border-color: var(--accent-gold);
+      }
+
+      .price {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2em;
+        color: var(--coffee-dark);
+        font-weight: 700;
+        margin: 15px 0 8px;
+        letter-spacing: -0.02em;
+      }
+
+      .price::before {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: var(--accent-gold);
+        margin: 0 auto 12px;
+      }
+
+      .section {
+        margin-bottom: 25px;
+      }
+
+      h2 {
+        font-family: "Playfair Display", serif;
+        color: var(--coffee-dark);
+        font-size: 1.4em;
+        margin-bottom: 12px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: var(--accent-gold);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .feature-card {
+        background: var(--gray-light);
+        padding: 15px;
+        border-radius: 2px;
+        border-left: 3px solid var(--coffee-light);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(44, 24, 16, 0.08);
+        border-left-color: var(--accent-gold);
+      }
+
+      .feature-card h3 {
+        color: var(--coffee-dark);
+        margin-bottom: 6px;
+        font-size: 1em;
+        font-weight: 600;
+      }
+
+      .feature-card p {
+        color: var(--coffee-medium);
+        font-size: 0.85em;
+        line-height: 1.5;
+        font-weight: 300;
+      }
+
+      .specs-list {
+        background: var(--gray-light);
+        padding: 20px;
+        border-radius: 2px;
+        margin-top: 12px;
+        border: 1px solid var(--gray-medium);
+      }
+
+      .specs-list ul {
+        list-style: none;
+        columns: 2;
+        column-gap: 40px;
+      }
+
+      .specs-list li {
+        padding: 6px 0;
+        color: var(--coffee-dark);
+        position: relative;
+        padding-left: 20px;
+        font-size: 0.85em;
+        font-weight: 300;
+        break-inside: avoid;
+      }
+
+      .specs-list li:before {
+        content: "●";
+        position: absolute;
+        left: 0;
+        color: var(--accent-gold);
+        font-size: 0.8em;
+      }
+
+      .contact-section {
+        background: var(--coffee-dark);
+        color: var(--cream);
+        padding: 25px;
+        border-radius: 2px;
+        text-align: center;
+        margin-top: 25px;
+        box-shadow: 0 20px 60px rgba(26, 15, 10, 0.3);
+      }
+
+      .contact-section h2 {
+        color: var(--cream);
+        margin-bottom: 12px;
+      }
+
+      .contact-section h2::after {
+        background: var(--accent-gold);
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .contact-info {
+        font-size: 1em;
+        margin: 10px 0;
+        font-weight: 300;
+      }
+
+      .contact-info a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        border-bottom: 1px solid transparent;
+      }
+
+      .contact-info a:hover {
+        color: var(--cream);
+        border-bottom-color: var(--cream);
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--accent-gold);
+        color: var(--espresso);
+        padding: 12px 30px;
+        border-radius: 2px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 15px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(201, 169, 97, 0.3);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        font-size: 0.85em;
+      }
+
+      .cta-button:hover {
+        background: var(--cream);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(201, 169, 97, 0.4);
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        color: var(--coffee-medium);
+        font-size: 0.85em;
+        font-weight: 300;
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 40px 25px;
+        }
+
+        h1 {
+          font-size: 2.2em;
+        }
+
+        .subtitle {
+          font-size: 0.9em;
+        }
+
+        .price {
+          font-size: 2.5em;
+        }
+
+        .specs-list ul {
+          columns: 1;
+        }
+
+        header {
+          padding: 40px 30px;
+        }
+
+        .profile-medallion {
+          width: 80px;
+          height: 80px;
+          right: 30px;
+        }
+
+        .feature-card {
+          padding: 25px;
+        }
+
+        h2 {
+          font-size: 1.6em;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-section {
+          padding: 40px 25px;
+        }
+
+        .cta-button {
+          padding: 14px 35px;
+          font-size: 0.85em;
+        }
+
+        .carousel-button {
+          width: 45px;
+          height: 45px;
+          font-size: 16px;
+        }
+
+        .carousel-button.prev {
+          left: 15px;
+        }
+
+        .carousel-button.next {
+          right: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.8em;
+        }
+
+        .price {
+          font-size: 2em;
+        }
+
+        .main-content {
+          padding: 30px 20px;
+        }
+
+        header {
+          padding: 35px 20px;
+        }
+
+        .profile-medallion {
+          display: none;
+        }
+
+        .section {
+          margin-bottom: 40px;
+        }
+
+        .carousel-button {
+          width: 40px;
+          height: 40px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Vând Eureka Atom Speciality 65E</h1>
+        <p class="subtitle">Rășniță profesională pentru pasionați de cafea</p>
+        <div class="profile-medallion">
+          <img src="profile.png" alt="Ovidiu Chis" />
+        </div>
+      </header>
+
+      <div class="main-content">
+        <div class="hero-section">
+          <div class="carousel-container">
+            <div class="carousel-wrapper">
+              <div class="carousel-slide active">
+                <img src="1.jpg" alt="Eureka Atom Speciality 65E - Vedere 1" />
+              </div>
+              <div class="carousel-slide">
+                <img src="2.jpg" alt="Eureka Atom Speciality 65E - Vedere 2" />
+              </div>
+
+              <button class="carousel-button prev" onclick="changeSlide(-1)">
+                ❮
+              </button>
+              <button class="carousel-button next" onclick="changeSlide(1)">
+                ❯
+              </button>
+
+              <div class="carousel-dots">
+                <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                <span class="carousel-dot" onclick="goToSlide(1)"></span>
+              </div>
+            </div>
+          </div>
+          <div class="price">Preț: 3199 RON</div>
+          <p style="color: #7f8c8d; font-size: 0.95em; margin-top: 10px">
+            Negociabil pentru cumpărători serioși
+          </p>
+          <div
+            style="
+              background: #ecf0f1;
+              padding: 12px;
+              border-radius: 6px;
+              margin-top: 15px;
+              text-align: left;
+              font-size: 0.9em;
+            "
+          >
+            <p style="color: #2c3e50; margin-bottom: 6px">
+              <strong>📋 Detalii produs:</strong>
+            </p>
+            <p style="color: #555; margin-bottom: 4px">
+              • Model: <strong>Atom Speciality 65E</strong>
+            </p>
+            <p style="color: #555; margin-bottom: 4px">
+              • Culoare: <strong>Negru mat</strong>
+            </p>
+            <p style="color: #555; margin-bottom: 4px">
+              • Preț de listă oficial: <strong>~4399 RON</strong>
+            </p>
+            <p style="color: #555; margin-bottom: 4px">
+              • Stare: <strong>Excelentă</strong> - funcțională impecabil
+            </p>            
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Specificații tehnice</h2>
+          <div class="specs-list">
+            <ul>
+              <li>Cuțite cu lamă plată din oțel călit cu diametrul de 65 mm</li>
+              <li>Motor 350W - silențios</li>
+              <li>Turație redusă: 1310 RPM</li>
+              <li>Sistem de reglare micrometric stepless (infinit)</li>
+              <li>Led iluminare portafiltru</li>
+              <li>Capacitate hopper: 300g</li>
+              <li>Retenție minimă: sub 0.5g</li>
+              <li>Compatibil: espresso, filtru, moka</li>
+              <li>Finish: negru mat premium</li>
+              <li>Dimensiuni: 540*205*227mm</li>
+              <li>Greutate: 9,5 kg</li>
+            </ul>
+          </div>
+          <p style="margin-top: 12px; color: #555; font-size: 0.85em">
+            <strong>📖 Detalii complete:</strong>
+            <a
+              href="https://barshaker.ro/eureka-atom-specialty-65-black"
+              target="_blank"
+              style="color: #3498db; text-decoration: none"
+              >Specificații oficiale Eureka Atom Speciality 65</a
+            >
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Starea rășniței</h2>
+          <div
+            style="
+              background: #f8f9fa;
+              padding: 15px;
+              border-radius: 6px;
+              margin-top: 10px;
+              font-size: 0.9em;
+            "
+          >
+            <h3 style="color: #2c3e50; margin-bottom: 8px; font-size: 1.1em">
+              Întreținere atentă
+            </h3>
+            <p style="color: #555; line-height: 1.6; margin-bottom: 10px">
+              Această rășniță a fost utilizată cu grijă și întreținută
+              corespunzător. <strong style="color: #27ae60;">Total cafele măcinate: 3.907</strong> (conform counter intern).
+            </p>
+            <ul
+              style="
+                list-style: none;
+                padding-left: 0;
+                color: #555;
+                line-height: 1.6;
+              "
+            >
+              <li
+                style="
+                  margin-bottom: 12px;
+                  padding-left: 25px;
+                  position: relative;
+                "
+              >
+                <span
+                  style="
+                    position: absolute;
+                    left: 0;
+                    color: #27ae60;
+                    font-weight: bold;
+                  "
+                  >✓</span
+                >
+                <strong>Curățată regulat</strong>
+              </li>
+              <li
+                style="
+                  margin-bottom: 12px;
+                  padding-left: 25px;
+                  position: relative;
+                "
+              >
+                <span
+                  style="
+                    position: absolute;
+                    left: 0;
+                    color: #27ae60;
+                    font-weight: bold;
+                  "
+                  >✓</span
+                >
+                <strong>Cuțite în stare excelentă</strong> - fără uzură
+                vizibilă
+              </li>
+              <li
+                style="
+                  margin-bottom: 12px;
+                  padding-left: 25px;
+                  position: relative;
+                "
+              >
+                <span
+                  style="
+                    position: absolute;
+                    left: 0;
+                    color: #27ae60;
+                    font-weight: bold;
+                  "
+                  >✓</span
+                >
+                <strong>Utilizare home-use:</strong> 2-3 cafele pe zi
+              </li>
+              <li
+                style="
+                  margin-bottom: 12px;
+                  padding-left: 25px;
+                  position: relative;
+                "
+              >
+                <span
+                  style="
+                    position: absolute;
+                    left: 0;
+                    color: #27ae60;
+                    font-weight: bold;
+                  "
+                  >✓</span
+                >
+                <strong
+                  >Niciodată folosită cu cafea aromatizată sau oleioasă</strong
+                >
+              </li>
+              <li
+                style="
+                  margin-bottom: 12px;
+                  padding-left: 25px;
+                  position: relative;
+                "
+              >
+                <span
+                  style="
+                    position: absolute;
+                    left: 0;
+                    color: #27ae60;
+                    font-weight: bold;
+                  "
+                  >✓</span
+                >
+                <strong>Funcționează perfect</strong> - măcinare consistentă și
+                precisă
+              </li>
+            </ul>
+            <p
+              style="
+                color: #555;
+                line-height: 1.6;
+                margin-top: 12px;
+                padding-top: 12px;
+                border-top: 1px solid #dee2e6;
+              "
+            >
+              Rășnița este în <strong>stare impecabilă</strong> (estetic și funcțional <strong style="color: #27ae60;">10/10</strong>).
+              Finish negru mat perfect, fără zgârieturi.
+              <br /><br />
+              <strong>🔧 Revizie completă în Martie 2026:</strong> deep clean profesional,
+              desfăcută complet, curățată și reasamblată. Practic ca nouă!
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Ce primești</h2>
+          <div
+            style="
+              background: #f8f9fa;
+              padding: 15px;
+              border-radius: 6px;
+              border-left: 3px solid #27ae60;
+              font-size: 0.9em;
+            "
+          >
+            <p style="color: #2c3e50; margin-bottom: 10px">
+              <strong>Pachet complet:</strong>
+            </p>
+            <div style="columns: 2; column-gap: 20px">
+              <p style="color: #555; margin-bottom: 6px; break-inside: avoid">
+                ✓ Rășniță Eureka Atom Speciality 65E
+              </p>
+              <p style="color: #555; margin-bottom: 12px; break-inside: avoid">
+                ✓ Hopper original 300g
+              </p>
+              <p style="color: #555; margin-bottom: 12px; break-inside: avoid">
+                ✓ Furculiță coated pentru portfiltru
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Pentru cine este această rășniță?</h2>
+          <p
+            style="
+              font-size: 0.95em;
+              color: #555;
+              margin-top: 10px;
+              line-height: 1.6;
+            "
+          >
+            Dacă folosești cafea pre-măcinată de la supermarket, această rășniță
+            nu e pentru tine. Dar dacă înțelegi că măcinarea proaspătă este
+            secretul unei cafele excepționale, dacă vrei consistență de la shot
+            la shot, dacă apreciezi ingineria germano-italiană de calitate și
+            cauți o rășniță care să țină pasul cu un espressor serios – atunci
+            am ce cauți.
+          </p>
+        </div>
+
+        <div class="contact-section">
+          <h2>Interesat?</h2>
+          <div class="contact-info">
+            📧 Email: <a href="mailto:ov.chis@gmail.com">ov.chis@gmail.com</a>
+          </div>
+          <div class="contact-info">
+            📱 WhatsApp: <a href="https://wa.me/40730020215">+40 730 020 215</a>
+          </div>
+          <a href="https://wa.me/40730020215" class="cta-button"
+            >Contactează-mă pe WhatsApp</a
+          >
+          <p style="margin-top: 15px; font-size: 0.85em; color: #95a5a6">
+            Locație: Cluj-Napoca, România<br />
+            Predare personală sau curier.
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2026 Ovidiu Chis | Toate drepturile rezervate</p>
+        <p style="margin-top: 10px">
+          Creat cu pasiune pentru cafea de specialitate ☕
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".carousel-slide");
+      const dots = document.querySelectorAll(".carousel-dot");
+      const totalSlides = slides.length;
+
+      function showSlide(n) {
+        // Wrap around
+        if (n >= totalSlides) currentSlide = 0;
+        if (n < 0) currentSlide = totalSlides - 1;
+
+        // Hide all slides and deactivate all dots
+        slides.forEach((slide) => slide.classList.remove("active"));
+        dots.forEach((dot) => dot.classList.remove("active"));
+
+        // Show current slide and activate current dot
+        slides[currentSlide].classList.add("active");
+        dots[currentSlide].classList.add("active");
+      }
+
+      function changeSlide(direction) {
+        currentSlide += direction;
+        showSlide(currentSlide);
+      }
+
+      function goToSlide(n) {
+        currentSlide = n;
+        showSlide(currentSlide);
+      }
+
+      // Auto-advance carousel every 5 seconds
+      setInterval(() => {
+        changeSlide(1);
+      }, 5000);
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") changeSlide(-1);
+        if (e.key === "ArrowRight") changeSlide(1);
+      });
+
+      // Touch/swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      const carouselWrapper = document.querySelector(".carousel-wrapper");
+
+      carouselWrapper.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      carouselWrapper.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        if (touchEndX < touchStartX - 50) changeSlide(1); // Swipe left
+        if (touchEndX > touchStartX + 50) changeSlide(-1); // Swipe right
+      }
+    </script>
+  </body>
+</html>
